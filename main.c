@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
 
 //********************************************************************
 //
@@ -25,6 +24,9 @@
 unsigned int inputBits;
 unsigned int x;
 unsigned int y;
+bool isRunning;
+bool isError;
+char inputExit;
 
 //Funktionen deklarieren
 unsigned int getBits();
@@ -33,62 +35,91 @@ void putbits(unsigned int n);
 //Hauptprogramm
 int main()
 {
-    printf("* ---- Integer to Bit conversion ----\n");
-    printf("* Please type in a integer-number:\n");
-    printf("./");
-    fflush(stdin);
-    scanf("%d", &inputBits);
-    putbits(inputBits);
+    do
+    {
+        isRunning = true;
+        isError = true;
+        printf("\n* ---- Integer to Bit conversion ----\n");
+        printf("* Please type in a integer-number:\n");
+        printf("./");
+        fflush(stdin);
+        scanf("%d", &inputBits);
+        printf("* Result: ");
+        putbits(inputBits);
 
-    printf("\n* ---- Bit to Integer conversion ----\n");
-    printf("* Result: %u\n", getBits());
+        printf("\n* ---- Bit to Integer conversion ----\n");
+        printf("* Result: %u\n", getBits());
 
-    printf("\n* ---- Bit operations ----\n");
+        printf("\n* ---- Bit operations ----\n");
 
-    //Eingabe des Benutzers
-    printf("* Please type in two figures:\n");
-    printf("./firstNumber/");
-    fflush(stdin);
-    scanf("%u", &x);
-    printf("./secondNumber/");
-    fflush(stdin);
-    scanf("%u", &y);
+        //Eingabe des Benutzers
+        printf("* Please type in two figures:\n");
+        printf("./firstNumber/");
+        fflush(stdin);
+        scanf("%u", &x);
+        printf("./secondNumber/");
+        fflush(stdin);
+        scanf("%u", &y);
 
-    //Ausgabe Bitmuster variable x:
-    printf("* Bit pattern of: %u = x: ",x);
-    putbits(x);
+        //Ausgabe Bitmuster variable x:
+        printf("* Bit pattern of: %u = x: ", x);
+        putbits(x);
 
-    //Ausgabe Bitmuster variable y:
-    printf("* Bit pattern of: %u = x: ",y);
-    putbits(y);
+        //Ausgabe Bitmuster variable y:
+        printf("* Bit pattern of: %u = x: ", y);
+        putbits(y);
 
-    //Ausgabe Bitmuster x & y:
-    printf("* Bit pattern of x & y: ");
-    putbits(x & y);
+        //Ausgabe Bitmuster x & y:
+        printf("* Bit pattern of x & y: ");
+        putbits(x & y);
 
-    //Ausgabe Bitmuster x | y:
-    printf("* Bit pattern of x | y: ");
-    putbits(x | y);
+        //Ausgabe Bitmuster x | y:
+        printf("* Bit pattern of x | y: ");
+        putbits(x | y);
 
-    //Ausgabe Bitmuster x ^ y:
-    printf("* Bit pattern of x ^ y: ");
-    putbits(x ^ y);
+        //Ausgabe Bitmuster x ^ y:
+        printf("* Bit pattern of x ^ y: ");
+        putbits(x ^ y);
 
-    printf("*\n ---- Bit shifting ----\n");
+        printf("\n* ---- Bit shifting ----\n");
 
-    //Eingabe des Benutzers
-    printf("* By how many positions should x be shifted?\n");
-    printf("./shift/");
-    fflush(stdin);
-    scanf("%u", &inputBits);
+        //Eingabe des Benutzers
+        printf("* By how many positions should x be shifted?\n");
+        printf("./shift/");
+        fflush(stdin);
+        scanf("%u", &inputBits);
 
-    //Ausgabe Bitmuster x << n:
-    printf("* Bit pattern of x << %u: ", inputBits);
-    putbits(x << inputBits);
+        //Ausgabe Bitmuster x << n:
+        printf("* Bit pattern of x << %u: ", inputBits);
+        putbits(x << inputBits);
 
-    //Ausgabe Bitmuster x >> n:
-    printf("* Bit pattern of x >> %u: ", inputBits);
-    putbits(x >> inputBits);
+        //Ausgabe Bitmuster x >> n:
+        printf("* Bit pattern of x >> %u: ", inputBits);
+        putbits(x >> inputBits);
+
+        //re-run
+        while (isError)
+        {
+            printf("\n* Would you like to do more operations? (y/n)\n");
+            printf("./exit/");
+            fflush(stdin);
+            scanf("%c", &inputExit);
+
+            if (inputExit == 'y')
+            {
+                isError = false;
+            }
+            else if (inputExit == 'n')
+            {
+                isError = false;
+                isRunning = false;
+                printf("* Shutting down...\n");
+            }
+            else
+                printf("\n* ERROR! Wrong input!\n");
+        }
+    }
+    while (isRunning);
 
     return 0;
 }
