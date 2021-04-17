@@ -40,10 +40,10 @@ int main()
     scanf("%d", &inputBits);
     putbits(inputBits);
 
-    printf("* ---- Bit to Integer conversion ----\n");
+    printf("\n* ---- Bit to Integer conversion ----\n");
     printf("* Result: %u\n", getBits());
 
-    printf("* ---- Bit operations ----\n");
+    printf("\n* ---- Bit operations ----\n");
 
     //Eingabe des Benutzers
     printf("* Please type in two figures:\n");
@@ -73,6 +73,22 @@ int main()
     //Ausgabe Bitmuster x ^ y:
     printf("* Bit pattern of x ^ y: ");
     putbits(x ^ y);
+
+    printf("*\n ---- Bit shifting ----\n");
+
+    //Eingabe des Benutzers
+    printf("* By how many positions should x be shifted?\n");
+    printf("./shift/");
+    fflush(stdin);
+    scanf("%u", &inputBits);
+
+    //Ausgabe Bitmuster x << n:
+    printf("* Bit pattern of x << %u: ", inputBits);
+    putbits(x << inputBits);
+
+    //Ausgabe Bitmuster x >> n:
+    printf("* Bit pattern of x >> %u: ", inputBits);
+    putbits(x >> inputBits);
 
     return 0;
 }
