@@ -55,10 +55,13 @@ int main()
     scanf("%u", &y);
 
     //Ausgabe Bitmuster variable x:
-    printf("* Bit pattern of: %u = x: ",x),
+    printf("* Bit pattern of: %u = x: ",x);
     putbits(x);
 
     //Ausgabe Bitmuster variable y:
+    printf("* Bit pattern of: %u = x: ",y);
+    putbits(y);
+
     return 0;
 }
 
@@ -85,6 +88,9 @@ void putbits(unsigned int n)
         }
         else
             printf("0");
+
+        if (i % 4 == 0)
+            printf(" ");
     }
     printf("\n");
 }
