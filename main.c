@@ -70,6 +70,10 @@ int main()
     printf("* Bit pattern of x | y: ");
     putbits(x | y);
 
+    //Ausgabe Bitmuster x ^ y:
+    printf("* Bit pattern of x ^ y: ");
+    putbits(x ^ y);
+
     return 0;
 }
 
