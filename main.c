@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
+#include <string.h>
 
 //********************************************************************
 //
@@ -26,7 +27,7 @@ unsigned int x;
 unsigned int y;
 bool isRunning;
 bool isError;
-char inputExit;
+char inputChar;
 
 //Funktionen deklarieren
 unsigned int getBits();
@@ -53,13 +54,37 @@ int main()
         printf("\n* ---- Bit operations ----\n");
 
         //Eingabe des Benutzers
-        printf("* Please type in two figures:\n");
-        printf("./firstNumber/");
+        printf("* Please choose an input method: \n");
+        printf("* binary (bit-pattern) - b\n");
+        printf("* decimal (integer-value) - d\n");
+        printf("./operations/");
         fflush(stdin);
-        scanf("%u", &x);
-        printf("./secondNumber/");
         fflush(stdin);
-        scanf("%u", &y);
+        scanf("%c", &inputChar);
+
+        if(inputChar == 'b')
+        {
+            printf("* Please type in two figures:\n");
+            x = getBits();
+            y = getBits();
+        }
+        else if(inputChar == 'd')
+        {
+            printf("* Please type in two figures:\n");
+            printf("./firstNumber/");
+            fflush(stdin);
+            scanf("%u", &x);
+
+            printf("./secondNumber/");
+            fflush(stdin);
+            scanf("%u", &y);
+        }
+        else
+        {
+            printf("\n* ERROR! Wrong input!\n");
+            x = 1;
+            y = 1;
+        }
 
         //Ausgabe Bitmuster variable x:
         printf("* Bit pattern of: %u = x: ", x);
@@ -103,13 +128,13 @@ int main()
             printf("\n* Would you like to do more operations? (y/n)\n");
             printf("./exit/");
             fflush(stdin);
-            scanf("%c", &inputExit);
+            scanf("%s", &inputChar);
 
-            if (inputExit == 'y')
+            if (inputChar == 'y')
             {
                 isError = false;
             }
-            else if (inputExit == 'n')
+            else if (inputChar == 'n')
             {
                 isError = false;
                 isRunning = false;
